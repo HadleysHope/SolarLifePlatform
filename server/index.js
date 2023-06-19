@@ -1,22 +1,25 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const UserModel = require("./models/Users");
+// Importing required modules and packages
+const express = require("express"); // Express framework for creating the server
+const cors = require("cors"); // Cross-Origin Resource Sharing middleware
+const bodyParser = require("body-parser"); // Body parsing middleware
+const connect = require("./db/connection"); // Custom function to establish database connection
 
-mongoose.connect(
-  "mongodb+srv://admin:V8XKuUPStP1kwCCB@cluster0.0fw2zbr.mongodb.net/solarLifeDB?retryWrites=true&w=majority"
-);
+// Establishing database connection
+(async function () {
+  await connect();
+})();
 
-app.get("/getUsers", async (req, res) => {
-  try {
-    const result = await UserModel.find({ name: "admin" });
-    console.log(result);
-    res.json(result);
-  } catch (err) {
-    res.json(err);
-  }
-});
+const users = require("./routes/user.routes"); // Importing user routes
 
+const app = express(); // Creating an Express application
+
+app.use(bodyParser.json()); // Parse request bodies as JSON
+
+app.use(cors()); // Enable Cross-Origin Resource Sharing
+
+app.use("/users", users); // Mounting the user routes on "/users" path
+
+// Starting the server
 app.listen(3001, () => {
   console.log("Server running ok");
 });
