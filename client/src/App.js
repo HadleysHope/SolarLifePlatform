@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import Login from "./components/login/Login";
+import Dashboard from "./components/dashboard/Dashboard";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+  // User Authentication Needed
+  // This will access login page change to true to access dashboard.
+  const isAuthenticated = false;
+
+
+// Use for Development for testing purposes.
+ return (
+    <div className="app">
+      {isAuthenticated ? (
+        <Dashboard />
+      ) : (
+        <Login />
+      )}
     </div>
+
+  
+  /* This is the real code once authentication is activated
+return (
+  <Router>
+    <div className='app'>
+      <Switch>
+        // Login Page
+        <Route exact path="/Login" Component={Login} />
+
+        // Protected route: Dashboard
+        {isAuthenticated ? (
+          <Route exact path="/" Component={Dashboard} />
+        ) : (
+          // Redirect to login if not authenticated
+          <Route render ={() => <Redirect to="/login" />} />
+        )}
+      </Switch>
+    </div>
+  </Router>
+);
+*/
+
   );
-}
+};
 
 export default App;

@@ -1,0 +1,117 @@
+.login-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary--racing-green);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    opacity: 0.8;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  
+  
+  .logo {
+    width: 200px;
+    margin-bottom: 5px;
+  }
+  
+  h1 {
+    text-align: left;
+    color: var(--secondary--primrose);
+    font-weight: bold;
+  }
+
+  .input-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: var(--primary);
+    padding-left: 10px;
+    border-radius: 5px;
+  }
+  
+  .input-icon i {
+    color: var(--black);
+    margin-right: 10px;
+  }
+  
+  input [type="text"],
+  input [type="password"] {
+    width:100%;
+    padding: 10px;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+  }
+  
+  input [type="text"]:focus,
+  input [type="password"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+
+  
+  .remember-me {
+    color: var(--secondary--primrose);
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  .remember-me input[type="checkbox"] {
+    margin-right: 5px;
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+    width: 16px;
+    height: 16px;
+    outline: none;
+    border: 2px solid var(--secondary--primrose);
+    border-radius: 3px;
+  }
+  
+  .remember-me input[type="checkbox"]:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+  
+  .remember-me input[type="checkbox"]:hover {
+    background-color: var(--secondary--golden-sand);
+    border-color: var(--secondary--golden-sand);
+  }
+  
+  .remember-me input[type="checkbox"]:checked::before {
+    content: "\2714";
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+    left: -2px;
+    color: var(--secondary--primrose);
+  }
