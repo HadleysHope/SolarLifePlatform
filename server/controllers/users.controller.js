@@ -1,5 +1,5 @@
-// Importing the User model from the "../db/models/User" file
-const User = require("../db/models/User");
+// Importing the User model from the database
+const User = require("../db/models/user");
 
 // Controller function to list all users
 const ListUsers = async (req, res) => {
