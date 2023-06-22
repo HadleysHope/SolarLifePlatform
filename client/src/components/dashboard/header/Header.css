@@ -1,0 +1,38 @@
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary--racing-green);
+    padding: 10px 10px 0px 10px;
+    color: var(--primary);
+  }
+  
+  .dashboard-logo img {
+    height: 50px;
+  }
+  
+  .dashboard-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .welcome-label {
+    margin-right: 10px;
+  }
+  
+  .settings.icon {
+    color: white;
+    font-size: 20px;
+  }
+  
+  .settings .icon:hover {
+    cursor: pointer;
+  }
+  
+  .dashboard-heading {
+    flex: 1;
+    text-align: right;
+    color: var(--primary);
+    font-size: 26px;
+  }
+  

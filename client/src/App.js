@@ -6,7 +6,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 const App = () => {
   // User Authentication Needed
   // This will access login page change to true to access dashboard.
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
 
 // Use for Development for testing purposes.
