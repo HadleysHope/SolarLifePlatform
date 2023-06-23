@@ -5,6 +5,7 @@ import Weather from "./weather/Weather";
 import Navigation from "./navigation/Navigation";
 import Home from "../content/home/Home";
 import Placeholder from "../content/placeholder/Placeholder";
+import Inventory from "../content/inventory/Inventory";
 
 const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -23,7 +24,7 @@ const Dashboard = () => {
   } else if (selectedOption === "messaging") {
     contentComponent = <Placeholder />;
   } else if (selectedOption === "stock-management") {
-    contentComponent = <Placeholder />;
+    contentComponent = <Inventory />;
   } else if (selectedOption === "reports") {
     contentComponent = <Placeholder />;
   } else if (selectedOption === "users") {
