@@ -1,0 +1,39 @@
+.navigation {
+    display: flex;
+    justify-content: center;
+    background-color: var(--secondary--racing-green);
+    padding: 10px;
+  }
+  
+  .nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--primary);
+    border: none;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: var(--primary);
+    color: var(--white);
+  }
+  
+  .dashboard-nav {
+    display: flex;
+    gap: 10px; /* Adjust the value as per your preference */
+  }
+  

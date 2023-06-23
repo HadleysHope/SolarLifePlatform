@@ -1,0 +1,9 @@
+.placeholder-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Adjust the height as needed */
+    font-size: 18px;
+    color: gray;
+  }
+  
