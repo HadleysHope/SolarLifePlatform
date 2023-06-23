@@ -1,0 +1,50 @@
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .stock-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .panel {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  
+  .panel h3 {
+    margin-top: 0;
+  }
+  
+  .placeholder {
+    font-size: 18px;
+  }
+  
+  .stock-table {
+    margin-top: 20px;
+  }
+  
+  .category-title {
+    margin-bottom: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    background-color: #f4f4f4;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
