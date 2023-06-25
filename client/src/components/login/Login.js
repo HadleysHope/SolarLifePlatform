@@ -5,12 +5,15 @@ import "./Login.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+import { useNavigate } from "react-router-dom";
+
 const initialState = {
   email: "",
   password: "",
 };
 
 const Login = () => {
+  const navigate = useNavigate();
   // const [email, setUseremail] = useState("");
   // const [password, setPassword] = useState("");
   const [formData, setformData] = useState(initialState);
@@ -70,7 +73,7 @@ const Login = () => {
     // try {
     const data = await loginUser(userData);
     console.log(data);
-    //   // navigate("/dashboard");
+    navigate("/dashboard");
     // } catch (error) {
     // }
   };
@@ -99,6 +102,7 @@ const Login = () => {
             <input
               type="text"
               id="email"
+              name="email"
               value={email}
               placeholder="Email"
               onChange={handleInputChange}
@@ -110,6 +114,7 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              name="password"
               value={password}
               placeholder="Password"
               onChange={handleInputChange}
