@@ -62,8 +62,6 @@ const Register = async (req, res) => {
       res.status(400);
       throw new Error("Invalid user data");
     }
-
-    // res.status(200).send("Registration succesful");
   } catch (err) {
     // Handling any errors that occur during the registration process
     res.status(400).json({ message: err.message });
@@ -105,7 +103,7 @@ const Login = async (req, res) => {
     });
   }
   if (user && passwordIsCorrect) {
-    const { _id, name, email, photo, phone, bio } = user;
+    const { _id, name, email } = user;
     res.status(200).json({
       _id,
       name,

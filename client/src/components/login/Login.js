@@ -1,27 +1,81 @@
 import React, { useState, useRef, useEffect } from "react";
 import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
-import './Login.css';
+import "./Login.css";
+
+import axios from "axios";
+import { toast } from "react-toastify";
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const videoRef = useRef(null);
+  // const [email, setUseremail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [formData, setformData] = useState(initialState);
+  const { email, password } = formData;
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setformData({ ...formData, [name]: value });
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  }
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-  const handleSubmit = (e) => {
+  const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+
+  // Login User
+  const loginUser = async (userData) => {
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/api/users/login`,
+        userData
+      );
+      if (response.statusText === "OK") {
+        toast.success("Login Successful...");
+      }
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      toast.error(message);
+    }
+  };
+
+  const login = async (e) => {
     e.preventDefault();
-    // Authentication to go here
-    console.log('Login Form Submitted');
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    if (!email || !password) {
+      return toast.error("All fields are required");
+    }
+
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email");
+    }
+
+    const userData = {
+      email,
+      password,
+    };
+    // setIsLoading(true);
+    // try {
+    const data = await loginUser(userData);
+    console.log(data);
+    //   // navigate("/dashboard");
+    // } catch (error) {
+    // }
   };
+
+  const videoRef = useRef(null);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -34,7 +88,7 @@ const Login = () => {
       <video ref={videoRef} loop muted>
         <source src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4"></source>
       </video>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={login}>
         <div className="login-form">
           <div className="logo">
             <img src={SolarlifeLogo} alt="SolarLife Logo" className="logo" />
@@ -45,9 +99,9 @@ const Login = () => {
             <input
               type="text"
               id="email"
-              value={username}
-              placeholder="User Name"
-              onChange={handleUsernameChange}
+              value={email}
+              placeholder="Email"
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -58,7 +112,7 @@ const Login = () => {
               id="password"
               value={password}
               placeholder="Password"
-              onChange={handlePasswordChange}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -66,7 +120,9 @@ const Login = () => {
             <input type="checkbox" id="remember" name="remember" />
             <label htmlFor="remember">Remember Me</label>
           </div>
-          <button type="submit" id="loginButton">Login</button>
+          <button type="submit" id="loginButton">
+            Login
+          </button>
           <h5>Forgot your password?</h5>
         </div>
       </form>
