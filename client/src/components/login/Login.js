@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
 import "./Login.css";
-
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../userSlice";
 
 const initialState = {
   email: "",
@@ -11,14 +12,14 @@ const initialState = {
 };
 
 const Login = () => {
-  // const [email, setUseremail] = useState("");
-  // const [password, setPassword] = useState("");
-  const [formData, setformData] = useState(initialState);
+  const dispatch = useDispatch();
+
+  const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setformData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -29,17 +30,38 @@ const Login = () => {
     );
   };
 
-  // Login User
-  const loginUser = async (userData) => {
+  const validateForm = () => {
+    if (!email || !password) {
+      toast.error("All fields are required");
+      return false;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error("Please enter a valid email");
+      return false;
+    }
+
+    return true;
+  };
+
+  const login = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    const userData = {
+      email: formData.email,
+      password: formData.password,
+    };
+
     try {
-      const response = await axios.post(
-        `${BACKEND_URL}/api/users/login`,
-        userData
-      );
-      if (response.statusText === "OK") {
+      const response = await axios.post(`${BACKEND_URL}/auth/login`, userData);
+      if (response.status === 200) {
         toast.success("Login Successful...");
+        dispatch(setUser(response.data));
       }
-      return response.data;
     } catch (error) {
       const message =
         (error.response &&
@@ -49,30 +71,6 @@ const Login = () => {
         error.toString();
       toast.error(message);
     }
-  };
-
-  const login = async (e) => {
-    e.preventDefault();
-
-    if (!email || !password) {
-      return toast.error("All fields are required");
-    }
-
-    if (!validateEmail(email)) {
-      return toast.error("Please enter a valid email");
-    }
-
-    const userData = {
-      email,
-      password,
-    };
-    // setIsLoading(true);
-    // try {
-    const data = await loginUser(userData);
-    console.log(data);
-    //   // navigate("/dashboard");
-    // } catch (error) {
-    // }
   };
 
   const videoRef = useRef(null);
@@ -85,9 +83,11 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <video ref={videoRef} loop muted>
-        <source src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4"></source>
-      </video>
+      <div>
+        <video ref={videoRef} loop muted>
+          <source src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4" />
+        </video>
+      </div>
       <form onSubmit={login}>
         <div className="login-form">
           <div className="logo">
@@ -99,6 +99,7 @@ const Login = () => {
             <input
               type="text"
               id="email"
+              name="email"
               value={email}
               placeholder="Email"
               onChange={handleInputChange}
@@ -110,6 +111,7 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              name="password"
               value={password}
               placeholder="Password"
               onChange={handleInputChange}
