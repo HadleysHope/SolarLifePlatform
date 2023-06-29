@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import axios from 'axios';
-import Login from './components/login/Login';
-import Dashboard from './components/dashboard/Dashboard';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import Login from "./components/login/Login";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    // Fetch authentication status from the backend
-    const backendUrl = 'http://localhost:3005'; // Replace with your backend server URL
-
-    axios
-      .get(`${backendUrl}/auth/check-auth`)
-      .then((response) => {
-        setIsAuthenticated(response.data.isAuthenticated);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
   // Development mode - testing purposes
   return (
-    <div className="app">
-      {isAuthenticated ? <Dashboard /> : <Login />}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-
 };
 
 export default App;

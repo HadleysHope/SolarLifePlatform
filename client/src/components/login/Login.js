@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
-import './Login.css';
+import "./Login.css";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -13,14 +16,28 @@ const Login = () => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Authentication to go here
-    console.log('Login Form Submitted');
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    try {
+      // const response = axios.get("http://localhost:3001/users");
+      const response = await axios.post("http://localhost:3001/auth/login", {
+        // email: "sammy@test.com",
+        // password: "123456789",
+        email: username,
+        password: password,
+      });
+      console.log(response);
+
+      if (response.status === 200) {
+        navigate("/dashboard");
+        console.log("status validated");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -66,7 +83,9 @@ const Login = () => {
             <input type="checkbox" id="remember" name="remember" />
             <label htmlFor="remember">Remember Me</label>
           </div>
-          <button type="submit" id="loginButton">Login</button>
+          <button type="submit" id="loginButton">
+            Login
+          </button>
           <h5>Forgot your password?</h5>
         </div>
       </form>
