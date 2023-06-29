@@ -1,7 +1,7 @@
 // Importing the Mongoose library
 const mongoose = require("mongoose");
 
-// Defining the UserSchema using the mongoose.Schema class
+// Defining the ProductSchema using the mongoose.Schema class
 const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -43,8 +43,8 @@ const ProductSchema = new mongoose.Schema({
   },
 });
 
-// Creating a UserModel using the UserSchema
+// Creating a ProductModel using the ProductSchema
 const ProductModel = mongoose.model("products", ProductSchema);
 
-// Exporting the UserModel
+// Exporting the ProductModel
 module.exports = ProductModel;
