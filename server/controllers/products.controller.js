@@ -1,10 +1,10 @@
-// Importing the User model from the database
+// Importing the Products model from the database
 const Products = require("../db/models/Products");
 
 // Controller function to list all products
 const ListProducts = async (req, res) => {
   try {
-    // Find all users in the database
+    // Find all products in the database
     const products = await Products.find({});
     // Return the list of products as a JSON response
     res.json(products);
@@ -18,11 +18,11 @@ const ListProducts = async (req, res) => {
 // Controller function to get a product by their ID
 const GetProduct = async (req, res) => {
   try {
-    // Extract the user_id from the request parameters
+    // Extract the product_id from the request parameters
     const { product_id } = req.params;
-    // Find the user with the specified ID in the database
+    // Find the product with the specified ID in the database
     const product = await Products.findById(product_id);
-    // Return the user as a JSON response
+    // Return the product as a JSON response
     res.json(product);
   } catch (err) {
     console.error(err);
@@ -33,7 +33,7 @@ const GetProduct = async (req, res) => {
 
 // Controller function to create a new product
 const CreateProduct = async (req, res) => {
-  // Create a new User instance based on the request body data
+  // Create a new Product instance based on the request body data
   const product = new Products({
     name: req.body.name,
     dimensions: req.body.dimensions,
@@ -61,7 +61,7 @@ const CreateProduct = async (req, res) => {
 // Controller function to update a product
 const UpdateProduct = async (req, res) => {
   try {
-    // Extract the user_id from the request parameters
+    // Extract the product_id from the request parameters
     const { product_id } = req.params;
     // Find the user with the specified ID in the database
     const product = await Products.findById(product_id);

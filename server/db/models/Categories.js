@@ -1,7 +1,7 @@
 // Importing the Mongoose library
 const mongoose = require("mongoose");
 
-// Defining the UserSchema using the mongoose.Schema class
+// Defining the CategorySchema using the mongoose.Schema class
 const CategorySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -9,8 +9,8 @@ const CategorySchema = new mongoose.Schema({
   },
 });
 
-// Creating a UserModel using the UserSchema
+// Creating a CategoryModel using the CategorySchema
 const CategoryModel = mongoose.model("categories", CategorySchema);
 
-// Exporting the UserModel
+// Exporting the CategoryModel
 module.exports = CategoryModel;
