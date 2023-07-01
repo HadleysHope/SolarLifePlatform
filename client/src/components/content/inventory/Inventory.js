@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Inventory.css";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+
 
 const Inventory = () => {
   const[products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,10 +22,29 @@ const Inventory = () => {
     fetchProducts();
   }, []);
 
+  const handleEdit = (productId) => {
+    // Redirect to the edit page with the product ID
+    navigate(`/edit-product/${productId}`);
+  };
+
+  const handleDelete = async (productId) => {
+    console.log("Delete product:", productId);
+    try {
+      await axios.delete(`http://localhost:3001/products/${productId}`);
+      setProducts(products.filter((product) => product._id !== productId));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (products.length === 0) {
     return <div>Loading...</div>;
   }
   
+  const handleAddProduct = async (productId) => {
+    console.log("Add new Product", productId );
+    navigate("/add-product");
+  }
 
   return (
     <section className="dashboard-content">
@@ -81,10 +103,21 @@ const Inventory = () => {
                   <td>{product.serialNumber}</td>
                   <td>{product.category_id}</td>
                   <td>{product.price * product.currentStock}</td>
+                  <td>
+                    <button onClick={() => handleEdit(product._id)}>
+                      <i className="fa fa-edit"></i> Edit
+                    </button>
+                    <button onClick={() => handleDelete(product._id)}>
+                      <i className="fa fa-trash"></i> Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <button onClick={handleAddProduct}>
+            <i className="faplus">Add New Product</i>
+          </button>
         </div>
       </div>
     </section>
@@ -93,26 +126,3 @@ const Inventory = () => {
 
 export default Inventory;
 
-/*
-import React, { useEffect } from "react";
-import axios from "axios";
-
-const Inventory = () => {
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/products');
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  return null;
-};
-
-export default Inventory;
-*/
