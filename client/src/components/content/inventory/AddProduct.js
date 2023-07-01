@@ -12,7 +12,7 @@ const AddProduct = () => {
     weight: "",
     price: "",
     currentStock: "",
-    minimumStock: "",
+    minimunStock: "",
     serialNumber: "",
     category_id: ""
   });
@@ -121,9 +121,9 @@ const AddProduct = () => {
           <label htmlFor="minimumStock">Minimum Stock:</label>
           <input
             type="text"
-            id="minimumStock"
-            name="minimumStock"
-            value={product.minimumStock}
+            id="minimunStock"
+            name="minimunStock"
+            value={product.minimunStock}
             onChange={handleProductChange}
           />
         </div>
