@@ -1,50 +1,68 @@
+/* Inventory.css */
+
 .dashboard-content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.stock-content {
+  display: flex;
+  gap: 20px;
+}
+
+.panel {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.panel h3 {
+  margin-top: 0;
+}
+
+.placeholder {
+  font-size: 18px;
+}
+
+/* Product List Table Styling */
+
+.product-list {
+  color: #333;
+}
+
+.product-list .table {
+  padding: 5px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.product-list .table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.product-list .table th {
+  border: 1px solid var(--black);
+  padding: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-list .table tr:nth-child(even) {
+  background-color: var(--primary);
+}
+
+.product-list .table tbody tr:hover {
+  cursor: pointer;
+  background-color: white;
+}
+
+/* JavaScript for Dynamic Font Sizing */
+@media (min-width: 769px) {
+  .product-list .table th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  
-  .stock-content {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .panel {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 4px;
-  }
-  
-  .panel h3 {
-    margin-top: 0;
-  }
-  
-  .placeholder {
-    font-size: 18px;
-  }
-  
-  .stock-table {
-    margin-top: 20px;
-  }
-  
-  .category-title {
-    margin-bottom: 10px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  thead {
-    background-color: #f4f4f4;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
+}
