@@ -99,7 +99,7 @@ const Inventory = () => {
                   <td>{product.weight}</td>
                   <td>{product.price}</td>
                   <td>{product.currentStock}</td>
-                  <td>{product.minimumStock}</td>
+                  <td>{product.minimunStock}</td>
                   <td>{product.serialNumber}</td>
                   <td>{product.category_id}</td>
                   <td>{product.price * product.currentStock}</td>
