@@ -6,6 +6,7 @@ import Navigation from "./navigation/Navigation";
 import Home from "../content/home/Home";
 import Placeholder from "../content/placeholder/Placeholder";
 import Inventory from "../content/inventory/Inventory";
+import Users from "../content/users/Users";
 
 const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -28,7 +29,7 @@ const Dashboard = () => {
   } else if (selectedOption === "reports") {
     contentComponent = <Placeholder />;
   } else if (selectedOption === "users") {
-    contentComponent = <Placeholder />;
+    contentComponent = <Users />;
   }
 
   return (
