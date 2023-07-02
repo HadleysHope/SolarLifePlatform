@@ -6,7 +6,8 @@ import Navigation from "./navigation/Navigation";
 import Home from "../content/home/Home";
 import Placeholder from "../content/placeholder/Placeholder";
 import Inventory from "../content/inventory/Inventory";
-import Users from "../content/users/Users";
+import Users from "../content/users/users";
+
 
 const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState("");
