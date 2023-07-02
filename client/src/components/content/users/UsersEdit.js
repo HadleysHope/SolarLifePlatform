@@ -53,6 +53,7 @@ useEffect(() => {
                     <input
                         type="text"
                         id="name"
+                        name="name"
                         value={user.name}
                         onChange={handleUserChange}
                     />
@@ -60,8 +61,9 @@ useEffect(() => {
                 <div>
                     <label htmlfor="email">Email:</label>
                     <input
-                        type="email"
+                        type="text"
                         id="email"
+                        name="email"
                         value={user.email}
                         onChange={handleUserChange}
                     />
@@ -69,6 +71,7 @@ useEffect(() => {
                     <input
                         type="text"
                         id="password"
+                        name="password"
                         value={user.password}
                         onChange={handleUserChange}
                     />

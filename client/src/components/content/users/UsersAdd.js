@@ -12,7 +12,7 @@ const AddUser = () => {
     const navigate = useNavigate();
 
     const handleUserChange = (e) => {
-        setUser({ ...user, [e.target.user]: e.target.value});
+        setUser({ ...user, [e.target.name]: e.target.value});
     };
 
     const handleUserSubmit = async (e) => {
@@ -42,7 +42,7 @@ const AddUser = () => {
                 <div>
                     <label htmlFor="email">Email:</label>
                     <input 
-                        type="email"
+                        type="text"
                         id="email"
                         name="email"
                         value={user.email}
