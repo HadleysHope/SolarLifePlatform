@@ -5,10 +5,9 @@ import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
-
-  // Assume you have a state or variable that holds the username
-  // const username = "John Doe";
   const username = location.state.userName;
+  
+ 
 
   console.log("location", location);
 
