@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { validateUserInput } from "./validateUserInput";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -14,7 +15,7 @@ const AddProduct = () => {
     currentStock: "",
     minimunStock: "",
     serialNumber: "",
-    category_id: ""
+    category_id: "",
   });
 
   const navigate = useNavigate();
@@ -25,11 +26,19 @@ const AddProduct = () => {
 
   const handleProductSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:3001/products", product);
-      navigate("/products");
-    } catch (error) {
-      console.error(error);
+
+    let userInputPassed = validateUserInput(product, e);
+    console.log(userInputPassed);
+    if (userInputPassed) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3001/products",
+          product
+        );
+        navigate("/products");
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -44,6 +53,7 @@ const AddProduct = () => {
             id="name"
             name="name"
             value={product.name}
+            placeholder="Required field."
             onChange={handleProductChange}
           />
         </div>
@@ -104,6 +114,7 @@ const AddProduct = () => {
             id="price"
             name="price"
             value={product.price}
+            placeholder="Required field."
             onChange={handleProductChange}
           />
         </div>
@@ -114,16 +125,18 @@ const AddProduct = () => {
             id="currentStock"
             name="currentStock"
             value={product.currentStock}
+            placeholder="Required field."
             onChange={handleProductChange}
           />
         </div>
         <div>
-          <label htmlFor="minimumStock">Minimum Stock:</label>
+          <label htmlFor="minimunStock">Minimum Stock:</label>
           <input
             type="text"
             id="minimunStock"
             name="minimunStock"
             value={product.minimunStock}
+            placeholder="Required field."
             onChange={handleProductChange}
           />
         </div>
@@ -144,14 +157,15 @@ const AddProduct = () => {
             id="category_id"
             name="category_id"
             value={product.category_id}
+            placeholder="Required field."
             onChange={handleProductChange}
           />
         </div>
         <button type="submit">Add Product</button>
       </form>
+      {/* <p style={{ color: "red" }}>{}</p> */}
     </div>
   );
 };
 
 export default AddProduct;
-

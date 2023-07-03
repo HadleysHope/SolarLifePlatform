@@ -1,10 +1,16 @@
-import React from 'react';
-import SolarlifeLogo from '../../../assets/SolarlifeLogo.png';
+import React from "react";
+import SolarlifeLogo from "../../../assets/SolarlifeLogo.png";
 import "./Header.css";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
   // Assume you have a state or variable that holds the username
-  const username = "John Doe";
+  // const username = "John Doe";
+  const username = location.state.userName;
+
+  console.log("location", location);
 
   return (
     <header className="dashboard-header">

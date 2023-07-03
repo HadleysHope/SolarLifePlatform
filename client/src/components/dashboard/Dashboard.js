@@ -10,7 +10,7 @@ import Users from "../content/users/users";
 
 
 const Dashboard = () => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("home");
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
