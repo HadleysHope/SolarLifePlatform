@@ -36,9 +36,13 @@ const EditUser = () => {
     e.preventDefault();
 
     let userInputPassed = validateUserInput(user, e);
+
     if (userInputPassed) {
       try {
-        await axios.put(`http://localhost:3001/users/${userId}`, user);
+        const response = await axios.put(
+          `http://localhost:3001/users/${userId}`,
+          user
+        );
         navigate("/users");
       } catch (error) {
         console.error(error);
