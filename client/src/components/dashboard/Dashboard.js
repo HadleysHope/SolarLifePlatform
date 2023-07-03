@@ -9,7 +9,7 @@ import Inventory from "../content/inventory/Inventory";
 import Users from "../content/users/Users";
 
 const Dashboard = () => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("home");
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);

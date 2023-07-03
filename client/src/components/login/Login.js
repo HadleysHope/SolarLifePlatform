@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
 import "./Login.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -22,17 +22,16 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // const response = axios.get("http://localhost:3001/users");
       const response = await axios.post("http://localhost:3001/auth/login", {
-        // email: "sammy@test.com",
-        // password: "123456789",
         email: username,
         password: password,
       });
       console.log(response);
 
       if (response.status === 200) {
-        navigate("/dashboard");
+        // console.log(response.data.name);
+        // navigate("/dashboard");
+        navigate("/dashboard", { state: { userName: response.data.name } });
         console.log("status validated");
       }
     } catch (e) {
