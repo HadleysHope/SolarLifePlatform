@@ -10,7 +10,7 @@ const Users = () => {
         const fetchUsers = async () => {
             try {
                 const response = await axios.get('http://localhost:3001/users');
-                console.log(response.data);
+                //console.log(response.data);
                 setUsers(response.data);
             } catch (error) {
                 console.error(error);
@@ -39,9 +39,9 @@ const Users = () => {
         return <div>Loading...</div>
     }
 
-    const handleAddUser = async (userid) => {
+    const handleAddUser = async () => {
         navigate("/add-user");
-    }
+    };
 
 
     return (
@@ -50,7 +50,7 @@ const Users = () => {
                 <div className="users-list">
                     <hr />
                     <div className="table">
-                        <div classname="--flex-between --flex-dir-column">
+                        <div className="--flex-between --flex-dir-column">
                             <span>
                                 <h3>List of Users</h3>
                             </span>
@@ -82,7 +82,7 @@ const Users = () => {
                             </tbody>
                         </table>
                         <button onClick={handleAddUser}>
-                            <i className="faplus">Add New User</i>
+                            <i className="fa fa-plus">Add New User</i>
                         </button>
                     </div>
                 </div>

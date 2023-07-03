@@ -4,11 +4,13 @@ import axios from "axios";
 import Login from "./components/login/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import Inventory from "./components/content/inventory/Inventory";
-import Users from "./components/content/users/Users";
 import EditProduct from "./components/content/inventory/EditProduct";
 import AddProduct from "./components/content/inventory/AddProduct";
+import Users from "./components/content/users/users";
 import EditUser from "./components/content/users/UsersEdit";
 import AddUser from "./components/content/users/UsersAdd";
+import PasswordReset from "./components/login/PasswordReset";
+
 
 const App = () => {
   // Development mode - testing purposes
@@ -25,6 +27,7 @@ const App = () => {
           <Route path="/users" element={<Users/>}/>
           <Route path="/edit-user/:userId" element={<EditUser />} />
           <Route path="/add-user" element={<AddUser />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
         </Routes>
       </div>
     </BrowserRouter>
