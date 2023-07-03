@@ -2,20 +2,38 @@ import React, { useState, useRef, useEffect } from "react";
 import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
 import "./Login.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+    
+    if (storedUsername && storedPassword) {
+      setUsername(storedUsername);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, []);
+
+  
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleRememberMeChange = () => {
+    setRememberMe(!rememberMe);
   };
 
   const handleSubmit = async (e) => {
@@ -26,16 +44,26 @@ const Login = () => {
         email: username,
         password: password,
       });
-      console.log(response);
 
-      if (response.status === 200) {
-        // console.log(response.data.name);
-        // navigate("/dashboard");
-        navigate("/dashboard", { state: { userName: response.data.name } });
-        console.log("status validated");
+      if (response && response.status === 200) {
+        if (rememberMe) {
+          localStorage.setItem("username", username);
+          localStorage.setItem("password", password);
+        } else {
+          localStorage.removeItem("username");
+          localStorage.removeItem("password");
+        }
+
+        navigate("/dashboard");
+        console.log("Login Succesful");
+      } else {
+        const errorMessage = response.data && response.data.message ? response.data.message : "Invalid username or password. Please try again.";
+      setError(errorMessage);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      // Handle error
+      const errorMessage = error.response && error.response.data && error.response.data.message ? error.response.data.message : "An error occurred. Please try again later.";
+      setError(errorMessage);
     }
   };
 
@@ -79,13 +107,20 @@ const Login = () => {
             />
           </div>
           <div className="remember-me">
-            <input type="checkbox" id="remember" name="remember" />
+            <input
+              type="checkbox"
+              id="remember"
+              name="remember"
+              checked={rememberMe}
+              onChange={handleRememberMeChange}
+            />
             <label htmlFor="remember">Remember Me</label>
           </div>
+          {error && <p className="error-message">{error}</p>}
           <button type="submit" id="loginButton">
             Login
           </button>
-          <h5>Forgot your password?</h5>
+          <Link to="/password-reset">Reset Password</Link>
         </div>
       </form>
     </div>
@@ -93,3 +128,4 @@ const Login = () => {
 };
 
 export default Login;
+
