@@ -43,10 +43,13 @@ const Login = () => {
 
     try {
 
+
       const response = await axios.post("http://localhost:3001/auth/login", {
         email: username,
         password: password,
+       
       });
+      console.log(response)
 
       if (response && response.status === 200) {
         if (rememberMe) {
@@ -57,7 +60,8 @@ const Login = () => {
           localStorage.removeItem("password");
         }
 
-        navigate("/dashboard", {name: response.data.name});
+        //navigate("/dashboard", {name: response.data.name});
+        navigate("/dashboard", {state:{userName: response.data.name} });
         console.log(response);
       } else {
         const errorMessage = response.data && response.data.message ? response.data.message : "Invalid username or password. Please try again.";
