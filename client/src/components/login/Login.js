@@ -8,6 +8,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
@@ -43,9 +44,8 @@ const Login = () => {
         email: username,
         password: password,
       });
-      console.log(response);
 
-      if (response.status === 200) {
+      if (response && response.status === 200) {
         if (rememberMe) {
           localStorage.setItem("username", username);
           localStorage.setItem("password", password);
@@ -55,10 +55,15 @@ const Login = () => {
         }
 
         navigate("/dashboard");
-        console.log("status validated");
+        console.log("Login Succesful");
+      } else {
+        const errorMessage = response.data && response.data.message ? response.data.message : "Invalid username or password. Please try again.";
+      setError(errorMessage);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      // Handle error
+      const errorMessage = error.response && error.response.data && error.response.data.message ? error.response.data.message : "An error occurred. Please try again later.";
+      setError(errorMessage);
     }
   };
 
@@ -102,14 +107,16 @@ const Login = () => {
             />
           </div>
           <div className="remember-me">
-            <input type="checkbox"
-             id="remember" 
-             name="remember"
-             checked={rememberMe}
-             onChange={handleRememberMeChange} 
-             />
+            <input
+              type="checkbox"
+              id="remember"
+              name="remember"
+              checked={rememberMe}
+              onChange={handleRememberMeChange}
+            />
             <label htmlFor="remember">Remember Me</label>
           </div>
+          {error && <p className="error-message">{error}</p>}
           <button type="submit" id="loginButton">
             Login
           </button>

@@ -38,7 +38,7 @@ const Register = async (req, res) => {
       password,
     });
 
-    //Generate Token
+    // Generate Token
     const token = generateToken(user._id);
 
     // Send HTTP-only cookie
@@ -72,29 +72,31 @@ const Register = async (req, res) => {
 
 // Function to handle user login
 const Login = async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
   // Validate Request
   if (!email || !password) {
-    res.status(400);
-    throw new Error("Please add email and password");
+    return res.status(400).json({ message: "Please provide email and password" });
   }
 
-  // Check if user exists
-  const user = await User.findOne({ email });
+    // Check if user exists
+    const user = await User.findOne({ email });
 
-  if (!user) {
-    res.status(400);
-    throw new Error("User not found, please signup");
-  }
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
 
-  // User exists, check if password is correct
-  const passwordIsCorrect = await bcrypt.compare(password, user.password);
+    // User exists, check if password is correct
+    const passwordIsCorrect = await bcrypt.compare(password, user.password);
 
-  //   Generate Token
-  const token = generateToken(user._id);
+    if (!passwordIsCorrect) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
 
-  if (passwordIsCorrect) {
+    // Password is correct, generate token
+    const token = generateToken(user._id);
+
     // Send HTTP-only cookie
     res.cookie("token", token, {
       path: "/",
@@ -103,18 +105,17 @@ const Login = async (req, res) => {
       sameSite: "none",
       secure: true,
     });
-  }
-  if (user && passwordIsCorrect) {
-    const { _id, name, email, photo, phone, bio } = user;
+
+    const { _id, name,  } = user;
     res.status(200).json({
       _id,
       name,
       email,
       token,
     });
-  } else {
-    res.status(400);
-    throw new Error("Invalid email or password");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred. Please try again later." });
   }
 };
 

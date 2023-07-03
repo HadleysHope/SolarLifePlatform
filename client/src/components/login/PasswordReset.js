@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import './PasswordReset.css';
+import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
 
 const PasswordReset = () => {
     const [email, setEmail] = useState("");
@@ -28,30 +30,39 @@ const PasswordReset = () => {
             setError("Failed to send password reset email. Please try Again.")
         }
     };
-
     return (
-        <div>
-            <h1> Password Reset</h1>
-            {message && <p>{message}</p>}
-            {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <div> 
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={handleEmailChange}
-                        required
-                    />
-                </div>
-                <button type="submit">Reset Password</button>
+        <div className="password-reset-container">
+          <video autoPlay loop muted className="background-video">
+            <source src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4"></source>
+          </video>
+          <div className="password-reset-form">
+            <div className="logo">
+              <img src={SolarlifeLogo} alt="SolarLife Logo" className="logo-image" />
+            </div>
+            <div className="Message">
+            {message && <p className="message">{message}</p>}
+            {error && <p className="error">{error}</p>}
+            </div>
+            <form className="password-reset-form" onSubmit={handleSubmit}>
+              <div className="input-field">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  className="input-email"
+                  required
+                />
+              </div>
+              <button type="submit" className="reset-button">
+                Reset Password
+              </button>
             </form>
-            <p>
-                Remember your Password? <Link to="/login">Login</Link>
-            </p>
+            <Link to="/login" className="login-link">Login</Link>
+          </div>
         </div>
-    );
-};
+      );
+    };
 
 export default PasswordReset;

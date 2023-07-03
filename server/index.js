@@ -1,3 +1,4 @@
+
 // Importing required modules and packages
 const express = require("express");
 const cors = require("cors");
@@ -37,13 +38,13 @@ async function sendPasswordResetEmail(email, resetLink) {
       host: 'smtp.ethereal.email',
       port: 587,
       auth: {
-          user: 'watson8@ethereal.email',
-          pass: 'Q4F4jCpuMvqBQja9SE'
+          user: 'melyna.botsford@ethereal.email',
+          pass: 'qtC8v18bv6swWJqNkj'
       }
   });
 
     const mailOptions = {
-      from: "Watson Rodriguez<sraw211@mywhitecliffe.com>",
+      from: "Melyna Botsford  <melyna.botsford@ethereal.email>",
       to: email,
       subject: "Password Reset",
       text: `Click the following link to reset your password: ${resetLink}`,
