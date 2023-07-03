@@ -11,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const videoRef = useRef(null);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
@@ -39,7 +40,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     try {
+
       const response = await axios.post("http://localhost:3001/auth/login", {
         email: username,
         password: password,
@@ -47,15 +50,15 @@ const Login = () => {
 
       if (response && response.status === 200) {
         if (rememberMe) {
-          localStorage.setItem("username", username);
+          localStorage.setItem("email", username);
           localStorage.setItem("password", password);
         } else {
           localStorage.removeItem("username");
           localStorage.removeItem("password");
         }
 
-        navigate("/dashboard");
-        console.log("Login Succesful");
+        navigate("/dashboard", {name: response.data.name});
+        console.log(response);
       } else {
         const errorMessage = response.data && response.data.message ? response.data.message : "Invalid username or password. Please try again.";
       setError(errorMessage);
