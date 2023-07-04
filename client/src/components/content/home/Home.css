@@ -1,18 +1,67 @@
 .home-content {
-    background-color: var(--secondary--primrose);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    max-width: 1400px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center horizontally within the parent */
-    padding: 50px;
-  }
-  
-  .home {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
+  background-color: var(--secondary--primrose);
+  color: var(--secondary--racing-green);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-welcome {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.home-welcome h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.home-welcome p {
+  font-size: 16px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-item h3 {
+  margin-top: 10px;
+  font-size: 20px;
+  color: var(--secondary--racing-green);
+}
+
+.image-item ul {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.image-item p {
+  margin-top: 10px;
+  color: var(--secondary--racing-green);
+}

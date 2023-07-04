@@ -1,13 +1,20 @@
 import React from "react";
 import SolarlifeLogo from "../../../assets/SolarlifeLogo.png";
 import "./Header.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
+
 
 const Header = () => {
   const location = useLocation();
   const username = location.state.userName;
+  const navigate = useNavigate();
   
- 
+ const handleLogout = () => {
+  localStorage.removeItem("username");
+  localStorage.removeItem("password");
+
+  navigate ("/");
+ }
 
   console.log("location", location);
 
@@ -21,6 +28,9 @@ const Header = () => {
         <div className="settings-icon">
           <i className="fas fa-cog"></i>
         </div>
+        <button onClick={handleLogout} className="logout-button">
+        Logout
+      </button>
       </div>
       <h1 className="dashboard-heading">SolarLife Dashboard</h1>
     </header>

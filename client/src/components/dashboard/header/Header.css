@@ -36,3 +36,11 @@
     font-size: 26px;
   }
   
+  .logout-button {
+    margin-left: 10px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

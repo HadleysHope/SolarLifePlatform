@@ -5,7 +5,6 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    margin-top: 20px;
     flex: 1; /* Take up the remaining vertical space */
   }
   
