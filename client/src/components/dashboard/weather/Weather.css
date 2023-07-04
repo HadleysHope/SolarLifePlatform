@@ -1,43 +1,38 @@
-.weather {
-    background-color: var(--secondary--racing-green);
-    text-align: center;
-    padding: 0px 10px;
-    height: 100px;
-  }
-  
-  .weather-label {
-    font-weight: bold;
-    color: var(--accent--fern-green);
-  }
-  
-  .weather-table {
-    width: 50%;
-    margin: 0 auto;
-  }
-  
-  .weather-table td {
-    padding: 10px 5px;
-    color: var(--secondary--golden-sand);
-  }
-  
-  .weather-table .day {
-    font-weight: bold;
-    font-size: 10px;
-  }
-  
-  .weather-table i {
-    color: var(--white);
-    font-size: 10px;
-  }
-  
-  .weather-table .temp {
-    font-weight: bold;
-    color: var(--secondary--golden-sand);
-    font-size: 10px;
-  }
-  
-  .weather-table td:not(:last-child) {
-    padding-right: 5px;
-  }
-  
-  
+.weather-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.weather-content {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.weather-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 8px;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.weather-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.weather-label {
+  font-weight: bold;
+  margin-right: 8px;
+}
