@@ -1,4 +1,16 @@
-/* Inventory.css */
+:root {
+  --primary: #9ab41e;
+  --secondary--racing-green: #050c07;
+  --secondary--primrose: #eae29c;
+  --secondary--golden-sand: #f2dd6b;
+  --accent--sea-green: #318935;
+  --accent--wild-willow: #adc068;
+  --accent--olive-drab: #5e962d;
+  --accent--fern-green: #4f8440;
+  --accent--green-pea: #26743c;
+  --white: white;
+  --black: black;
+}
 
 .dashboard-content {
   display: flex;
@@ -7,13 +19,16 @@
 
 .stock-content {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .panel {
-  background-color: #f4f4f4;
+  background-color: var(--accent--sea-green);
   padding: 20px;
   border-radius: 4px;
+  margin-bottom: 20px;
 }
 
 .panel h3 {
@@ -27,11 +42,10 @@
 /* Product List Table Styling */
 
 .product-list {
-  color: #333;
+  color: var(--black);
 }
 
 .product-list .table {
-  padding: 5px;
   width: 100%;
   overflow-x: auto;
 }
@@ -42,27 +56,107 @@
 }
 
 .product-list .table th {
-  border: 1px solid var(--black);
-  padding: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.product-list .table tr:nth-child(even) {
   background-color: var(--primary);
+  color: var(--white);
+  padding: 12px;
+  text-align: center;
 }
 
-.product-list .table tbody tr:hover {
+.product-list .table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--secondary--primrose);
+  text-align: center;
+}
+
+.product-list .table tbody tr:nth-child(even) {
+  background-color: var(--secondary--golden-sand);
+}
+
+.product-list .table td[contentEditable="true"] {
+  background-color: var(--accent--sea-green);
+  color: var(--white);
   cursor: pointer;
-  background-color: white;
 }
 
-/* JavaScript for Dynamic Font Sizing */
-@media (min-width: 769px) {
-  .product-list .table th {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.product-list .table td[contentEditable="true"]:hover {
+  background-color: var(--accent--green-pea);
+}
+
+.product-list .table td.edit-mode {
+  background-color: var(--white);
+}
+
+.product-list .table td.edit-mode[contentEditable="true"] {
+  background-color: var(--white);
+}
+
+.product-list .table td.edit-mode[contentEditable="true"]:hover {
+  background-color: var(--accent--green-pea);
+}
+
+.product-list .table td button {
+  background-color: var(--secondary--racing-green);
+  color: var(--white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-list .table td button:hover {
+  background-color: var(--accent--green-pea);
+}
+
+.product-list .table td .save-btn {
+  background-color: var(--secondary--golden-sand);
+  color: var(--secondary--racing-green);
+}
+
+.product-list .table td .save-btn:hover {
+  background-color: var(--secondary--racing-green);
+  color: var(--white);
+}
+
+.product-list .table td .cancel-btn {
+  background-color: var(--secondary--golden-sand);
+  color: var(--secondary--racing-green);
+}
+
+.product-list .table td .cancel-btn:hover {
+  background-color: var(--secondary--racing-green);
+  color: var(--white);
+}
+
+/* Additional Styles */
+
+.product-list .table th {
+  text-align: center;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap; /* Added property */
+}
+
+.pagination li {
+  list-style: none;
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: var(--secondary--primrose);
+  color: var(--black);
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination .active {
+  background-color: var(--primary);
+  color: var(--white);
 }
