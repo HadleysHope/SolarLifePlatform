@@ -1,41 +1,50 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import './Weather.css';
 const Weather = () => {
-  const [forecast, setForecast] = useState(null);
-
+  const [weatherData, setWeatherData] = useState(null);
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await axios.get('/api/forecast', {
-          params: {
-            city: 'Christchurch, NZ',
-          },
-        });
-        setForecast(response.data);
+        const apiKey = "3b78f4768b8e6731f90b88fcbf5e2999";
+        const city = "Christchurch,NZ";
+        const response = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+        );
+        setWeatherData(response.data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
     };
-
     fetchWeatherData();
   }, []);
-
   return (
-    <div>
-      {forecast !== null ? (
-        <div>
-          <h2>5-Day Forecast for {forecast.city.name}</h2>
-          {forecast.list.map((item) => (
-            <div key={item.dt}>
-              <p>Date: {new Date(item.dt * 1000).toLocaleDateString()}</p>
-              <p>Temperature: {item.main.temp}°C</p>
-              <p>Humidity: {item.main.humidity}%</p>
-              <p>Wind Speed: {item.wind.speed} km/h</p>
-              <hr />
+    <div className="weather-container">
+      {weatherData !== null ? (
+        <div className="weather-content">
+          <h2>Current Weather in {weatherData.name}</h2>
+          <img
+            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+            alt={weatherData.weather[0].description}
+          />
+          <div className="weather-details">
+            <div>
+              <span>Description:</span>
+              <span>{weatherData.weather[0].description}</span>
             </div>
-          ))}
+            <div>
+              <span>Temperature:</span>
+              <span>{weatherData.main.temp}°C</span>
+            </div>
+            <div>
+              <span>Humidity:</span>
+              <span>{weatherData.main.humidity}%</span>
+            </div>
+            <div>
+              <span>Wind Speed:</span>
+              <span>{weatherData.wind.speed} km/h</span>
+            </div>
+          </div>
         </div>
       ) : (
         <p>Loading weather data...</p>
@@ -43,5 +52,4 @@ const Weather = () => {
     </div>
   );
 };
-
 export default Weather;
