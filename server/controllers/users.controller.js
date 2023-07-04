@@ -1,5 +1,5 @@
 // Importing the User model from the database
-const User = require("../db/models/user");
+const User = require("../db/models/User");
 
 // Controller function to list all users
 const ListUsers = async (req, res) => {
@@ -38,6 +38,7 @@ const CreateUser = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    type: req.body.type,
   });
   try {
     // Save the new user to the database
@@ -61,6 +62,7 @@ const UpdateUser = async (req, res) => {
     user.name = req.body.name;
     user.email = req.body.email;
     user.password = req.body.password;
+    user.type = req.body.type;
     // Save the updated user to the database
     const updatedUser = await user.save();
     // Return the updated user as a JSON response
