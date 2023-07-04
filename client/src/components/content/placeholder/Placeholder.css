@@ -1,9 +1,76 @@
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  background-color: var(--secondary--racing-green);
+  color: white;
+  padding: 20px;
+}
+
 .placeholder-message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px; /* Adjust the height as needed */
-    font-size: 18px;
-    color: gray;
-  }
-  
+  background-color: var(--secondary--golden-sand);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.placeholder-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--secondary--racing-green);
+}
+
+.placeholder-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.placeholder-list li {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.placeholder-list li:before {
+  content: '•';
+  color: var(--primary);
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.placeholder-hero {
+  text-align: center;
+}
+
+.placeholder-hero-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.placeholder-hero-team {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.placeholder-hero-links {
+  display: flex;
+  justify-content: center;
+}
+
+.placeholder-hero-link {
+  color: var(--secondary--primrose);
+  background-color: var(--primary);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 10px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.placeholder-hero-link:hover {
+  background-color: var(--accent--green-pea);
+}
