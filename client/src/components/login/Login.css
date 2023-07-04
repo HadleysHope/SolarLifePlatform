@@ -6,15 +6,6 @@
     justify-content: center;
   }
   
-  video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
   
   .login-form {
     display: flex;
@@ -34,11 +25,6 @@
     z-index: 1;
   }
   
-  
-  .logo {
-    width: 200px;
-    margin-bottom: 5px;
-  }
   
   h1 {
     text-align: left;
@@ -115,3 +101,24 @@
     left: -2px;
     color: var(--secondary--primrose);
   }
+
+  
+  .password-link {
+    color: var(--secondary--primrose);
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+  }
+
+  .message {
+    color: green;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .error {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+

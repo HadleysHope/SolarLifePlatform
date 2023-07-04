@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
 import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import VideoComponent from "./Video";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
-  const videoRef = useRef(null);
   const navigate = useNavigate();
   
 
@@ -60,7 +60,6 @@ const Login = () => {
           localStorage.removeItem("password");
         }
 
-        //navigate("/dashboard", {name: response.data.name});
         navigate("/dashboard", {state:{userName: response.data.name} });
         console.log(response);
       } else {
@@ -74,17 +73,9 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  }, []);
-
   return (
     <div className="login-container">
-      <video ref={videoRef} loop muted>
-        <source src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4"></source>
-      </video>
+      <VideoComponent src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4"/>
       <form onSubmit={handleSubmit}>
         <div className="login-form">
           <div className="logo">
@@ -123,11 +114,11 @@ const Login = () => {
             />
             <label htmlFor="remember">Remember Me</label>
           </div>
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="message">{error}</p>}
           <button type="submit" id="loginButton">
             Login
           </button>
-          <Link to="/password-reset">Reset Password</Link>
+          <Link to="/password-reset" className="password-link">Reset Password</Link>
         </div>
       </form>
     </div>

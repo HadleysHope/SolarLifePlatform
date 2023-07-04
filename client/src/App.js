@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import axios from "axios";
 import Login from "./components/login/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import Inventory from "./components/content/inventory/Inventory";
@@ -10,6 +9,7 @@ import Users from "./components/content/users/users";
 import EditUser from "./components/content/users/UsersEdit";
 import AddUser from "./components/content/users/UsersAdd";
 import PasswordReset from "./components/login/PasswordReset";
+import './index.css';
 
 
 const App = () => {

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import './PasswordReset.css';
 import SolarlifeLogo from "../../assets/SolarlifeLogo.png";
+import VideoComponent from "./Video";
 
 const PasswordReset = () => {
     const [email, setEmail] = useState("");
@@ -32,37 +33,41 @@ const PasswordReset = () => {
     };
     return (
         <div className="password-reset-container">
-          <video autoPlay loop muted className="background-video">
-            <source src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4"></source>
-          </video>
-          <div className="password-reset-form">
-            <div className="logo">
-              <img src={SolarlifeLogo} alt="SolarLife Logo" className="logo-image" />
-            </div>
-            <div className="Message">
-            {message && <p className="message">{message}</p>}
-            {error && <p className="error">{error}</p>}
-            </div>
-            <form className="password-reset-form" onSubmit={handleSubmit}>
-              <div className="input-field">
-                <label htmlFor="email">Email:</label>
+          <VideoComponent src="https://solarlife.co.nz/wp-content/uploads/2023/04/Solar_life_intro.mp4" />
+          <form onSubmit={handleSubmit}>
+            <div className="password-reset-form">
+              <div className="logo">
+                <img src={SolarlifeLogo} alt="SolarLife Logo" className="logo" />
+              </div>
+              <h1>Forgot Password</h1>
+              <div className="input-icon">
+                <i className="fas fa-envelope"></i>
                 <input
                   type="email"
                   id="email"
                   value={email}
+                  placeholder="Email"
                   onChange={handleEmailChange}
                   className="input-email"
                   required
                 />
               </div>
-              <button type="submit" className="reset-button">
-                Reset Password
-              </button>
-            </form>
-            <Link to="/login" className="login-link">Login</Link>
+                {message && <p className="message">{message}</p>}
+                {error && <p className="error">{error}</p>}
+                
+            
+            <button type="submit" className="resetButton">
+              Reset Password
+            </button>
+            <Link to="/login" className="login-link">
+              Back to Login
+            </Link>
           </div>
+          </form>
         </div>
       );
-    };
-
-export default PasswordReset;
+      };
+      
+      export default PasswordReset;
+      
+      
