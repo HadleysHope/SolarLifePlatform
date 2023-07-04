@@ -1,33 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navigation.css";
-import Home from "../../content/home/Home";
-import Placeholder from "../../content/placeholder/Placeholder";
 
-const Navigation = ({ onOptionSelect }) => {
-  const [selectedOption, setSelectedOption] = useState("");
-
-  function handleOptionSelect(option) {
-    setSelectedOption(option);
-    onOptionSelect(option); // Call the onOptionSelect prop with the selected option
-  }
-
-  let contentComponent;
-  if (selectedOption === "home") {
-    contentComponent = <Home />;
-  } else if (selectedOption === "customers") {
-    contentComponent = <Placeholder />;
-  } else if (selectedOption === "scheduling") {
-    contentComponent = <Placeholder />;
-  } else if (selectedOption === "messaging") {
-    contentComponent = <Placeholder />;
-  } else if (selectedOption === "stock-management") {
-    contentComponent = <Placeholder />;
-  } else if (selectedOption === "reports") {
-    contentComponent = <Placeholder />;
-  } else if (selectedOption === "users") {
-    contentComponent = <Placeholder />;
-  }
-
+const Navigation = ({ onOptionSelect, selectedOption }) => {
   return (
     <nav className="navigation">
       <div className="dashboard-nav">
@@ -35,7 +9,7 @@ const Navigation = ({ onOptionSelect }) => {
           className={`dashboard-button ${
             selectedOption === "home" ? "active" : ""
           }`}
-          onClick={() => handleOptionSelect("home")}
+          onClick={() => onOptionSelect("home")}
         >
           Home
         </button>
@@ -43,7 +17,7 @@ const Navigation = ({ onOptionSelect }) => {
           className={`dashboard-button ${
             selectedOption === "customers" ? "active" : ""
           }`}
-          onClick={() => handleOptionSelect("customers")}
+          onClick={() => onOptionSelect("customers")}
         >
           Customers
         </button>
@@ -51,7 +25,7 @@ const Navigation = ({ onOptionSelect }) => {
           className={`dashboard-button ${
             selectedOption === "scheduling" ? "active" : ""
           }`}
-          onClick={() => handleOptionSelect("scheduling")}
+          onClick={() => onOptionSelect("scheduling")}
         >
           Scheduling
         </button>
@@ -59,7 +33,7 @@ const Navigation = ({ onOptionSelect }) => {
           className={`dashboard-button ${
             selectedOption === "messaging" ? "active" : ""
           }`}
-          onClick={() => handleOptionSelect("messaging")}
+          onClick={() => onOptionSelect("messaging")}
         >
           Messaging
         </button>
@@ -67,7 +41,7 @@ const Navigation = ({ onOptionSelect }) => {
           className={`dashboard-button ${
             selectedOption === "stock-management" ? "active" : ""
           }`}
-          onClick={() => handleOptionSelect("stock-management")}
+          onClick={() => onOptionSelect("stock-management")}
         >
           Stock Management
         </button>
@@ -75,7 +49,7 @@ const Navigation = ({ onOptionSelect }) => {
           className={`dashboard-button ${
             selectedOption === "reports" ? "active" : ""
           }`}
-          onClick={() => handleOptionSelect("reports")}
+          onClick={() => onOptionSelect("reports")}
         >
           Reports
         </button>
@@ -83,7 +57,7 @@ const Navigation = ({ onOptionSelect }) => {
           className={`dashboard-button ${
             selectedOption === "users" ? "active" : ""
           }`}
-          onClick={() => handleOptionSelect("users")}
+          onClick={() => onOptionSelect("users")}
         >
           Users
         </button>

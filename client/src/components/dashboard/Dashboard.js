@@ -37,7 +37,9 @@ const Dashboard = () => {
     <div>
       <Header />
       <Weather />
-      <Navigation onOptionSelect={handleOptionSelect} />
+      <Navigation 
+        onOptionSelect={handleOptionSelect}
+        selectedOption={selectedOption} />
       <div className="dashboard-content">{contentComponent}</div>
     </div>
   );
