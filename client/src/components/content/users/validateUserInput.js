@@ -1,5 +1,4 @@
 export function validateUserInput(user, e) {
-  console.log("MARIANO USER VALIDATION");
   // Validate the name field
   if (user.name.trim() === "") {
     alert("Please enter a name.");

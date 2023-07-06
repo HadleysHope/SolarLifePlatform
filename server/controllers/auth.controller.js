@@ -1,5 +1,6 @@
 // Importing the User model from the database
-const User = require("../db/models/user");
+// const User = require("../db/models/User");
+const User = require("../db/models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -11,17 +12,17 @@ const generateToken = (id) => {
 // Function to handle user registration
 const Register = async (req, res) => {
   try {
-    const { name, email, password } = req.body; // Extracting email and password from the request body
+    const { name, email, password, type } = req.body; // Extracting email and password from the request body
 
     //User input validation
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !type) {
       res.status(400);
       throw new Error("Plese make sure to fill required fields");
     }
-    if (password.length < 6) {
-      res.status(400);
-      throw new Error("Password must be up to 6 characters");
-    }
+    // if (password.length < 6) {
+    //   res.status(400);
+    //   throw new Error("Password must be up to 6 characters");
+    // }
 
     // Check if user email already exists
     const userExists = await User.findOne({ email });
@@ -36,6 +37,7 @@ const Register = async (req, res) => {
       name,
       email,
       password,
+      type,
     });
 
     // Generate Token
@@ -51,11 +53,12 @@ const Register = async (req, res) => {
     });
 
     if (user) {
-      const { _id, name, email } = user;
+      const { _id, name, email, type } = user;
       res.status(201).json({
         _id,
         name,
         email,
+        type,
         token,
       });
     } else {
@@ -75,10 +78,12 @@ const Login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-  // Validate Request
-  if (!email || !password) {
-    return res.status(400).json({ message: "Please provide email and password" });
-  }
+    // Validate Request
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Please provide email and password" });
+    }
 
     // Check if user exists
     const user = await User.findOne({ email });
@@ -106,16 +111,18 @@ const Login = async (req, res) => {
       secure: true,
     });
 
-    const { _id, name,  } = user;
+    const { _id, name, type } = user;
     res.status(200).json({
       _id,
       name,
-      email,
+      type,
       token,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "An error occurred. Please try again later." });
+    res
+      .status(500)
+      .json({ message: "An error occurred. Please try again later." });
   }
 };
 

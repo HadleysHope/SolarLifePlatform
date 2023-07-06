@@ -1,7 +1,16 @@
 import React from "react";
 import "./Navigation.css";
+import { useLocation } from "react-router-dom";
 
 const Navigation = ({ onOptionSelect, selectedOption }) => {
+  const location = useLocation();
+  const usertype = location.state.userType;
+  let isAdmin = false;
+
+  if (usertype === "Administrator") {
+    isAdmin = true;
+  }
+
   return (
     <nav className="navigation">
       <div className="dashboard-nav">
@@ -53,14 +62,16 @@ const Navigation = ({ onOptionSelect, selectedOption }) => {
         >
           Reports
         </button>
-        <button
-          className={`dashboard-button ${
-            selectedOption === "users" ? "active" : ""
-          }`}
-          onClick={() => onOptionSelect("users")}
-        >
-          Users
-        </button>
+        {isAdmin && (
+          <button
+            className={`dashboard-button ${
+              selectedOption === "users" ? "active" : ""
+            }`}
+            onClick={() => onOptionSelect("users")}
+          >
+            Users
+          </button>
+        )}
       </div>
     </nav>
   );

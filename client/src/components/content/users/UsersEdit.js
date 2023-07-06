@@ -8,7 +8,10 @@ const EditUser = () => {
     name: "",
     email: "",
     password: "",
+    type: "",
   });
+
+  const [selectedOption, setSelectedOption] = useState("Employee"); // State to store the selected option
 
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -38,6 +41,7 @@ const EditUser = () => {
     let userInputPassed = validateUserInput(user, e);
 
     if (userInputPassed) {
+      user.type = selectedOption;
       try {
         const response = await axios.put(
           `http://localhost:3001/users/${userId}`,
@@ -81,6 +85,20 @@ const EditUser = () => {
             value={user.password}
             onChange={handleUserChange}
           />
+        </div>
+        <div>
+          <label htmlFor="role">Role:</label>
+          <select
+            id="role"
+            name="role"
+            onChange={(e) => {
+              const opt = e.target.value;
+              setSelectedOption(opt);
+            }}
+          >
+            <option value="Employee">Employee</option>
+            <option value="Administrator">Administrator</option>
+          </select>
         </div>
         <button type="submit">Save</button>
       </form>
