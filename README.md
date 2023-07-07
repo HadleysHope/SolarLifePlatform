@@ -5,7 +5,7 @@ This is the working repostitory for the Web app 'SolarLifePlatform'.
 Check out the following repository for the documentation and Project Proposal: https://github.com/HadleysHope/IT6041-Team-DDT.git
 
 Check out the following repostiory for a presentation of the project : https://github.com/HadleysHope/SolarLifeProject_Presentation.git
-https://hadleyshope.github.io/SolarLifeProject_Presentation/
+or link to live webpage: https://hadleyshope.github.io/SolarLifeProject_Presentation/
 
 ## Repository Contents
 
