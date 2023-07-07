@@ -20,4 +20,6 @@ Check out the following repostiory for a presentation of the project : https://g
   When Cloning Repository use NPM Install in both Client/Server Folders to install all dependencies
   NPM Start in both folders to run Client on Port 3000 and Server on Port 3001
 
+  In Client Folder NPM Test will Run a Unit Test for Simulating and Verifying User Credentials.
+
   
