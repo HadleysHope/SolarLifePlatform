@@ -9,10 +9,10 @@ Check out the following repostiory for a presentation of the project : https://g
 ## Repository Contents
 
 - Documentation Folder: 
--- Kanban Folder- First and Last Shots
--- Scrum Minutes Folder- Contains all Scrum Minutes
--- Testing Plan Folder- Contains Testing Documents
--- Client Feedback Folder- Contains Client Feedback
+  - Kanban Folder- First and Last Shots
+  - Scrum Minutes Folder- Contains all Scrum Minutes
+  - Testing Plan Folder- Contains Testing Documents
+  - Client Feedback Folder- Contains Client Feedback
 
 - Client Folder: Front End Code
 - Server Folder: Back End Code
